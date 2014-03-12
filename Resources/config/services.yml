@@ -1,0 +1,7 @@
+parameters:
+#    citadel_map.example.class: Citadel\MapBundle\Example
+
+services:
+#    citadel_map.example:
+#        class: %citadel_map.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
