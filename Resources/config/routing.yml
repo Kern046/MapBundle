@@ -1,3 +1,9 @@
 citadel_map_homepage:
     pattern:  /
     defaults: { _controller: CitadelMapBundle:Public:index }
+
+
+citadel_map_administration:
+    pattern: /administration
+    defaults: { _controller: CitadelMapBundle:Administration:index }
+    
