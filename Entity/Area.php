@@ -35,7 +35,24 @@ class Area
      */
     private $coordinates;
 
-
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\ManyToOne(targetEntity="Citadel\MapBundle\Entity\Map", inversedBy="areas")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $map;
+    
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToMany(targetEntity="Citadel\MapBundle\Entity\Statistics", mappedBy="area", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $statistics;
+    
     /**
      * Get id
      *

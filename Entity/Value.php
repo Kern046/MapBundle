@@ -35,7 +35,24 @@ class Value
      */
     private $value;
 
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\ManyToOne(targetEntity="Citadel\MapBundle\Entity\Statistics", inversedBy="values")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $statistics;
 
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToOne(targetEntity="Citadel\MapBundle\Entity\Unit")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $unit;
+    
     /**
      * Get id
      *

@@ -28,6 +28,31 @@ class Statistics
      */
     private $name;
 
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\ManyToOne(targetEntity="Citadel\MapBundle\Entity\Area", inversedBy="statistics")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $area;
+    
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\ManyToOne(targetEntity="Citadel\MapBundle\Entity\Theme")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $theme;
+    
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToMany(targetEntity="Citadel\MapBundle\Entity\Value", mappedBy="statistics", cascade={"remove"})
+     */
+    private $values;
 
     /**
      * Get id
