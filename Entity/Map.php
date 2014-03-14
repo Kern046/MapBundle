@@ -49,6 +49,33 @@ class Map
      */
     private $scale;
 
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToOne(targetEntity="Citadel\MapBundle\Entity\BaseImage", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $baseImage;
+    
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToOne(targetEntity="Citadel\MapBundle\Entity\generatedImage", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $generatedImage;
+    
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToMany(targetEntity="Citadel\MapBundle\Entity\Area", mappedBy="map", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $areas;
+
 
     /**
      * Get id

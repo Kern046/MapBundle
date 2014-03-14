@@ -5,12 +5,12 @@ namespace Citadel\MapBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Value
+ * Area
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\ValueRepository")
+ * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\AreaRepository")
  */
-class Value
+class Area
 {
     /**
      * @var integer
@@ -29,29 +29,29 @@ class Value
     private $name;
 
     /**
-     * @var float
+     * @var array
      *
-     * @ORM\Column(name="value", type="float")
+     * @ORM\Column(name="coordinates", type="array")
      */
-    private $value;
+    private $coordinates;
 
     /**
      *
      * @var type 
      * 
-     * @ORM\ManyToOne(targetEntity="Citadel\MapBundle\Entity\Statistics", inversedBy="values")
+     * @ORM\ManyToOne(targetEntity="Citadel\MapBundle\Entity\Map", inversedBy="areas")
      * @ORM\JoinColumn(nullable=false)
+     */
+    private $map;
+    
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\OneToMany(targetEntity="Citadel\MapBundle\Entity\Statistics", mappedBy="area", cascade={"remove"})
+     * @ORM\JoinColumn(nullable=true)
      */
     private $statistics;
-
-    /**
-     *
-     * @var type 
-     * 
-     * @ORM\OneToOne(targetEntity="Citadel\MapBundle\Entity\Unit")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $unit;
     
     /**
      * Get id
@@ -67,7 +67,7 @@ class Value
      * Set name
      *
      * @param string $name
-     * @return Value
+     * @return Area
      */
     public function setName($name)
     {
@@ -87,25 +87,25 @@ class Value
     }
 
     /**
-     * Set value
+     * Set coordinates
      *
-     * @param float $value
-     * @return Value
+     * @param array $coordinates
+     * @return Area
      */
-    public function setValue($value)
+    public function setCoordinates($coordinates)
     {
-        $this->value = $value;
+        $this->coordinates = $coordinates;
 
         return $this;
     }
 
     /**
-     * Get value
+     * Get coordinates
      *
-     * @return float 
+     * @return array 
      */
-    public function getValue()
+    public function getCoordinates()
     {
-        return $this->value;
+        return $this->coordinates;
     }
 }
