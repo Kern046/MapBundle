@@ -41,4 +41,21 @@ class MapController extends Controller
         ));
         
     }
+    
+    public function showAction($id){
+        
+        $map = $this->getDoctrine()
+                    ->getManager()
+                    ->getRepository('CitadelMapBundle:Map')
+                    ->find($id);
+        
+        if(!is_null($map)){
+            
+            return $this->render('CitadelMapBundle:Map:show.html.twig',array(
+                'map' => $map
+            ));
+            
+        }
+        
+    }
 }

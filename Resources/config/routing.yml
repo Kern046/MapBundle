@@ -3,3 +3,9 @@ map_bundle_generate_map:
     defaults: { _controller: CitadelMapBundle:Map:generate, parent: null}
     requirements:
         parent: \d{1,4}|null
+        
+map_bundle_show_map:
+    pattern: /administration/map/show/{id}
+    defaults: { _controller: CitadelMapBundle:Map:show}
+    requirements:
+        id: \d{1,4}
