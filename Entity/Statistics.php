@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Statistics
  *
- * @ORM\Table()
+ * @ORM\Table(name="map_bundle_statistics")
  * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\StatisticsRepository")
  */
 class Statistics

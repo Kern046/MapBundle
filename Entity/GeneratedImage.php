@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * GeneratedImage
  *
- * @ORM\Table()
+ * @ORM\Table(name="map_bundle_generated_image")
  * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\GeneratedImageRepository")
  */
 class GeneratedImage

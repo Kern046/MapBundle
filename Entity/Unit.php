@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Unit
  *
- * @ORM\Table()
+ * @ORM\Table(name="map_bundle_unit")
  * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\UnitRepository")
  */
 class Unit

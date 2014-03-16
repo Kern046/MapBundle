@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Area
  *
- * @ORM\Table()
+ * @ORM\Table(name="map_bundle_area")
  * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\AreaRepository")
  */
 class Area

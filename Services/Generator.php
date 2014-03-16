@@ -10,7 +10,7 @@ class Generator{
     
     public function __construct($repository){
         
-        $this->repository = $repository;
+        $this->setRepository($repository);
         
     }
     

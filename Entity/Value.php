@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Value
  *
- * @ORM\Table()
+ * @ORM\Table(name="map_bundle_value")
  * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\ValueRepository")
  */
 class Value

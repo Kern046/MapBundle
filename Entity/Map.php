@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Map
  *
- * @ORM\Table()
+ * @ORM\Table(name="map_bundle_map")
  * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\MapRepository")
  */
 class Map
