@@ -1,0 +1,73 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}Map Generation{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" media="all" href="{{ asset('bootstrap-3.0.3/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ asset('css/kit.css') }}">
+{% endblock %}
+    
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('scripts/jquery.transit.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap-3.0.3/dist/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <div id="wrap">
+        <div id="map-generation-form" class="panel panel-default">
+            <div class="panel-body">
+                <form class="well" method="post" {{ form_enctype(form)}}>
+                    <div class="form-group">
+                        {{ form_label(form.name)}}
+                        {{ form_widget(form.name, { 'attr' : {'class' : 'form-control'}})}}
+                    </div>
+                    <div class="form-group">
+                        {{ form_label(form.baseImage.file)}}
+                        <div id="grouh" class="btn btn-primary">
+                            <span>File</span>
+                        </div>
+                        {{ form_widget(form.baseImage.file, {'attr' : {'data-file-field' : 'base-image', "style" : "display:none"}})}}
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">Générer</button>
+                    </div>
+                    {{ form_widget(form) }}
+                </form>
+                <script type="text/javascript">
+                    
+                    var lock = false;
+                    
+                    $("#grouh").ready(function(){
+                                
+                        $("#grouh").bind("click",function(){
+                        
+                            if(!lock){
+                                
+                                lock = true;
+                                $('[data-file-field=base-image]').click();
+                                lock = false;
+                                return false;
+                                
+                            }
+                            
+                        });
+                        
+                        $('[data-file-field=base-image]').bind("change",function(){
+                           
+                            var value = $(this).val();
+                            
+                            $("#grouh span").fadeTo("fast",0,function(){
+                                       
+                                $(this).text(value).fadeTo("fast",1);
+                        
+                            });
+                            
+                        });
+                        
+                    });
+                    
+                </script>
+            </div>
+        </div>
+    </div>
+{% endblock %}

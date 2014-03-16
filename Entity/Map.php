@@ -3,12 +3,14 @@
 namespace Citadel\MapBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Map
  *
  * @ORM\Table(name="map_bundle_map")
  * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\MapRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Map
 {
@@ -24,7 +26,14 @@ class Map
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "60",
+     *      minMessage = "Map's name must have more than {{ limit }} letters",
+     *      maxMessage = "Map's name must have less than {{ limit }} letters"
+     * )
      */
     private $name;
 
@@ -32,6 +41,7 @@ class Map
      * @var \DateTime
      *
      * @ORM\Column(name="createdAt", type="datetime")
+     * @Assert\DateTime()
      */
     private $createdAt;
 
@@ -39,6 +49,7 @@ class Map
      * @var \DateTime
      *
      * @ORM\Column(name="updatedAt", type="datetime")
+     * @Assert\DateTime()
      */
     private $updatedAt;
 
@@ -46,6 +57,12 @@ class Map
      * @var float
      *
      * @ORM\Column(name="scale", type="float")
+     * @Assert\Range(
+     *      min = 0.1,
+     *      max = 10.0,
+     *      minMessage = "The scale must be greater than {{limit}} or equal.",
+     *      maxMessage = "The scale must be less than {{limit}} or equal."
+     * )
      */
     private $scale;
 
@@ -55,6 +72,7 @@ class Map
      * 
      * @ORM\OneToOne(targetEntity="Citadel\MapBundle\Entity\BaseImage", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\Valid()
      */
     private $baseImage;
     
@@ -64,6 +82,7 @@ class Map
      * 
      * @ORM\OneToOne(targetEntity="Citadel\MapBundle\Entity\generatedImage", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
      */
     private $generatedImage;
     
@@ -73,10 +92,41 @@ class Map
      * 
      * @ORM\OneToMany(targetEntity="Citadel\MapBundle\Entity\Area", mappedBy="map", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=true)
+     * @Assert\Valid()
      */
     private $areas;
+    
+    /**
+     *
+     * @var type 
+     * 
+     * @ORM\ManyToOne(targetEntity="Citadel\MapBundle\Entity\Map")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $parent;
 
 
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist(){
+        
+        $datetime = new \DateTime;
+        
+        $this->setCreatedAt($datetime);
+        $this->setUpdatedAt($datetime);
+        $this->setScale(1.0);
+        
+    }
+    
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate(){
+        
+        $this->setUpdatedAt(new \DateTime);
+        
+    }
     /**
      * Get id
      *
@@ -263,5 +313,28 @@ class Map
     public function getAreas()
     {
         return $this->areas;
+    }
+
+    /**
+     * Set parent
+     *
+     * @param \Citadel\MapBundle\Entity\Map $parent
+     * @return Map
+     */
+    public function setParent(\Citadel\MapBundle\Entity\Map $parent = null)
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Get parent
+     *
+     * @return \Citadel\MapBundle\Entity\Map 
+     */
+    public function getParent()
+    {
+        return $this->parent;
     }
 }

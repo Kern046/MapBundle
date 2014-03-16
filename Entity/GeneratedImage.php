@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="map_bundle_generated_image")
  * @ORM\Entity(repositoryClass="Citadel\MapBundle\Entity\GeneratedImageRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class GeneratedImage
 {
@@ -42,7 +43,27 @@ class GeneratedImage
      */
     private $updatedAt;
 
-
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist(){
+        
+        $datetime = new \DateTime;
+        
+        $this->setCreatedAt($datetime);
+        $this->setUpdatedAt($datetime);
+        
+    }
+    
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate(){
+        
+        $this->setUpdatedAt(new \DateTime);
+        
+    }
+    
     /**
      * Get id
      *

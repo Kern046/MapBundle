@@ -8,6 +8,13 @@ class AdministrationController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('CitadelMapBundle:Administration:index.html.twig');
+        $map = $this->getDoctrine()
+                    ->getManager()
+                    ->getRepository('CitadelMapBundle:Map')
+                    ->findOneByParent(null);
+        
+        return $this->render('CitadelMapBundle:Administration:index.html.twig',array(
+            "map" => $map
+        ));
     }
 }

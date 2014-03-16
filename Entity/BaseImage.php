@@ -35,7 +35,7 @@ class BaseImage
      * @var string 
      * 
      * 
-     * @ORM\Column(name="alt", type="string", length=255)
+     * @ORM\Column(name="alt", type="string", length=255, unique=true)
      */
     private $alt;
 
@@ -72,6 +72,33 @@ class BaseImage
         $this->url = null;
         $this->alt = null;
       }
+    }
+    
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+
+    /**
+     * @ORM\PrePersist()
+     */
+    public function prePersist(){
+        
+        $datetime = new \DateTime;
+        
+        $this->setCreatedAt($datetime);
+        $this->setUpdatedAt($datetime);
+        
+    }
+    
+    /**
+     * @ORM\PreUpdate()
+     */
+    public function preUpdate(){
+        
+        $this->setUpdatedAt(new \DateTime);
+        
     }
 
     /**
@@ -115,7 +142,7 @@ class BaseImage
       // On déplace le fichier envoyé dans le répertoire de notre choix
       $this->file->move(
         $this->getUploadRootDir(), // Le répertoire de destination
-        $this->id.'.'.$this->url   // Le nom du fichier à créer, ici « id.extension »
+        $this->alt   // Le nom du fichier à créer, ici « id.extension »
       );
     }
 
@@ -143,7 +170,7 @@ class BaseImage
     public function getUploadDir()
     {
       // On retourne le chemin relatif vers l'image pour un navigateur
-      return 'uploads/img';
+      return 'images/Map/base';
     }
 
     protected function getUploadRootDir()
@@ -253,4 +280,10 @@ class BaseImage
     {
         return $this->id;
     }
+    
+    public function getWebPath()
+    {
+      return $this->getUploadDir().'/'.$this->getAlt();
+    }
+    
 }

@@ -5,9 +5,8 @@ namespace Citadel\MapBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Citadel\MapBundle\Form\BaseImageType;
 
-class MapType extends AbstractType
+class BaseImageType extends AbstractType
 {
         /**
      * @param FormBuilderInterface $builder
@@ -16,8 +15,7 @@ class MapType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('baseImage', new BaseImageType)
+            ->add('file','file')
         ;
     }
     
@@ -27,7 +25,7 @@ class MapType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Citadel\MapBundle\Entity\Map'
+            'data_class' => 'Citadel\MapBundle\Entity\BaseImage'
         ));
     }
 
@@ -36,6 +34,6 @@ class MapType extends AbstractType
      */
     public function getName()
     {
-        return 'citadel_mapbundle_map';
+        return 'citadel_mapbundle_baseimage';
     }
 }
