@@ -86,4 +86,90 @@ class Statistics
     {
         return $this->name;
     }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->values = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set area
+     *
+     * @param \Citadel\MapBundle\Entity\Area $area
+     * @return Statistics
+     */
+    public function setArea(\Citadel\MapBundle\Entity\Area $area)
+    {
+        $this->area = $area;
+
+        return $this;
+    }
+
+    /**
+     * Get area
+     *
+     * @return \Citadel\MapBundle\Entity\Area 
+     */
+    public function getArea()
+    {
+        return $this->area;
+    }
+
+    /**
+     * Set theme
+     *
+     * @param \Citadel\MapBundle\Entity\Theme $theme
+     * @return Statistics
+     */
+    public function setTheme(\Citadel\MapBundle\Entity\Theme $theme)
+    {
+        $this->theme = $theme;
+
+        return $this;
+    }
+
+    /**
+     * Get theme
+     *
+     * @return \Citadel\MapBundle\Entity\Theme 
+     */
+    public function getTheme()
+    {
+        return $this->theme;
+    }
+
+    /**
+     * Add values
+     *
+     * @param \Citadel\MapBundle\Entity\Value $values
+     * @return Statistics
+     */
+    public function addValue(\Citadel\MapBundle\Entity\Value $values)
+    {
+        $this->values[] = $values;
+
+        return $this;
+    }
+
+    /**
+     * Remove values
+     *
+     * @param \Citadel\MapBundle\Entity\Value $values
+     */
+    public function removeValue(\Citadel\MapBundle\Entity\Value $values)
+    {
+        $this->values->removeElement($values);
+    }
+
+    /**
+     * Get values
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getValues()
+    {
+        return $this->values;
+    }
 }

@@ -1,9 +1,5 @@
-citadel_map_homepage:
-    pattern:  /
-    defaults: { _controller: CitadelMapBundle:Public:index }
-
-
-citadel_map_administration:
-    pattern: /administration
-    defaults: { _controller: CitadelMapBundle:Administration:index }
-    
+map_bundle_generate_map:
+    pattern: /administration/map/generate/{parent}
+    defaults: { _controller: CitadelMapBundle:Map:generate, parent: null}
+    requirements:
+        parent: \d{1,4}|null

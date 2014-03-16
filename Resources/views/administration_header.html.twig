@@ -1,3 +1,38 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}{% endblock %}
+{% block title %}MapBundle{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" media="all" href="{{ asset('bootstrap-3.0.3/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" media="all" href="{{ asset('css/kit.css') }}">
+{% endblock %}
+    
+{% block javascripts %}
+    <script type="text/javascript" src="{{ asset('scripts/jquery.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/jquery.transit.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bootstrap-3.0.3/dist/js/bootstrap.min.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+
+<div id="header" role="navigation">
+    <div class="panel panel-default" id="map-manager">
+        <div class="panel-heading">
+            <h3 class="panel-title">Gestionnaire de cartes</div>
+        </div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="{{ path('map_bundle_generate_map') }}">
+                        Générer une carte
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+    {% block wrap%}{% endblock %}
+
+{% endblock %}

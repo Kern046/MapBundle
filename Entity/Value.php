@@ -108,4 +108,50 @@ class Value
     {
         return $this->value;
     }
+
+    /**
+     * Set statistics
+     *
+     * @param \Citadel\MapBundle\Entity\Statistics $statistics
+     * @return Value
+     */
+    public function setStatistics(\Citadel\MapBundle\Entity\Statistics $statistics)
+    {
+        $this->statistics = $statistics;
+
+        return $this;
+    }
+
+    /**
+     * Get statistics
+     *
+     * @return \Citadel\MapBundle\Entity\Statistics 
+     */
+    public function getStatistics()
+    {
+        return $this->statistics;
+    }
+
+    /**
+     * Set unit
+     *
+     * @param \Citadel\MapBundle\Entity\Unit $unit
+     * @return Value
+     */
+    public function setUnit(\Citadel\MapBundle\Entity\Unit $unit)
+    {
+        $this->unit = $unit;
+
+        return $this;
+    }
+
+    /**
+     * Get unit
+     *
+     * @return \Citadel\MapBundle\Entity\Unit 
+     */
+    public function getUnit()
+    {
+        return $this->unit;
+    }
 }

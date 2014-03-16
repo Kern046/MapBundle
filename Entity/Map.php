@@ -63,7 +63,7 @@ class Map
      * @var type 
      * 
      * @ORM\OneToOne(targetEntity="Citadel\MapBundle\Entity\generatedImage", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $generatedImage;
     
@@ -72,7 +72,7 @@ class Map
      * @var type 
      * 
      * @ORM\OneToMany(targetEntity="Citadel\MapBundle\Entity\Area", mappedBy="map", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $areas;
 
@@ -177,5 +177,91 @@ class Map
     public function getScale()
     {
         return $this->scale;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->areas = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set baseImage
+     *
+     * @param \Citadel\MapBundle\Entity\BaseImage $baseImage
+     * @return Map
+     */
+    public function setBaseImage(\Citadel\MapBundle\Entity\BaseImage $baseImage)
+    {
+        $this->baseImage = $baseImage;
+
+        return $this;
+    }
+
+    /**
+     * Get baseImage
+     *
+     * @return \Citadel\MapBundle\Entity\BaseImage 
+     */
+    public function getBaseImage()
+    {
+        return $this->baseImage;
+    }
+
+    /**
+     * Set generatedImage
+     *
+     * @param \Citadel\MapBundle\Entity\generatedImage $generatedImage
+     * @return Map
+     */
+    public function setGeneratedImage(\Citadel\MapBundle\Entity\generatedImage $generatedImage = null)
+    {
+        $this->generatedImage = $generatedImage;
+
+        return $this;
+    }
+
+    /**
+     * Get generatedImage
+     *
+     * @return \Citadel\MapBundle\Entity\generatedImage 
+     */
+    public function getGeneratedImage()
+    {
+        return $this->generatedImage;
+    }
+
+    /**
+     * Add areas
+     *
+     * @param \Citadel\MapBundle\Entity\Area $areas
+     * @return Map
+     */
+    public function addArea(\Citadel\MapBundle\Entity\Area $areas)
+    {
+        $this->areas[] = $areas;
+
+        return $this;
+    }
+
+    /**
+     * Remove areas
+     *
+     * @param \Citadel\MapBundle\Entity\Area $areas
+     */
+    public function removeArea(\Citadel\MapBundle\Entity\Area $areas)
+    {
+        $this->areas->removeElement($areas);
+    }
+
+    /**
+     * Get areas
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAreas()
+    {
+        return $this->areas;
     }
 }
