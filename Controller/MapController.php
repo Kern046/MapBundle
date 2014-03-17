@@ -13,7 +13,7 @@ class MapController extends Controller
         return $this->render('CitadelMapBundle:Map:index.html.twig');
     }
     
-    public function generateAction($parent){
+    public function createAction($parent){
         
         $map = new Map;
         
@@ -32,17 +32,17 @@ class MapController extends Controller
                 
                 return $this->redirect($this->generateUrl('citadel_administration'));
                 
-            }
+            } // Validation du formulaire
             
-        }
+        } // Contrôle de la méthode de la requête
         
         return $this->render('CitadelMapBundle:Map:generate.html.twig', array(
             'form' => $form->createView()
         ));
         
-    }
+    } // createAction()
     
-    public function showAction($id){
+    public function readAction($id){
         
         $map = $this->getDoctrine()
                     ->getManager()
@@ -57,5 +57,23 @@ class MapController extends Controller
             
         }
         
-    }
-}
+    } // readAction()
+    
+    public function updateAction(){
+        
+        
+    } // updateAction()
+    
+    public function deleteAction(){
+        
+        
+        
+    } // deleteAction()
+    
+    public function listAction(){
+        
+        
+        
+    } // listAction()
+    
+}// class MapController
