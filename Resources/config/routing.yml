@@ -1,11 +1,30 @@
-map_bundle_generate_map:
-    pattern: /administration/map/generate/{parent}
-    defaults: { _controller: CitadelMapBundle:Map:generate, parent: null}
+map_bundle_map_create:
+    pattern: /administration/map/create/{parent}
+    defaults: { _controller: CitadelMapBundle:Map:create, parent: null}
     requirements:
         parent: \d{1,4}|null
         
-map_bundle_show_map:
-    pattern: /administration/map/show/{id}
-    defaults: { _controller: CitadelMapBundle:Map:show}
+map_bundle_map_read:
+    pattern: /administration/map/read/{id}
+    defaults: { _controller: CitadelMapBundle:Map:read}
+    requirements:
+        _method : GET
+        id: \d{1,4}
+        
+map_bundle_map_update:
+    pattern: /administration/map/update/{id}
+    defaults: { _controller: CitadelMapBundle:Map:update}
     requirements:
         id: \d{1,4}
+
+map_bundle_map_delete:
+    pattern: /administration/map/delete/{id}
+    defaults:  { _controller: CitadelMapBundle:Map:delete}
+    requirements:
+        id : \d{1,4}
+        
+map_bundle_map_list:
+    pattern: /administration/map/list/{page_nb}
+    defaults: { _controller: CitadelMapBundle:Map:list, page_nb: 1}
+    requirements:
+        page_nb: \d{1,5}
